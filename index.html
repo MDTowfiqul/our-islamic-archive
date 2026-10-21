@@ -1,0 +1,145 @@
+---
+---
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ site.title }} — {{ site.tagline }}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --emerald:#0f5132; --emerald-d:#0a3a24; --gold:#d4af37; --gold-l:#f0d878;
+  --bg:#f7f5ef; --card:#ffffff; --ink:#1d2420; --muted:#6b7280; --line:#e7e2d5;
+}
+[data-theme="dark"]{
+  --bg:#101511; --card:#1a211c; --ink:#ece9dd; --muted:#9aa39b; --line:#2a332c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Hind Siliguri',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+header.top{position:sticky;top:0;z-index:50;background:var(--emerald);color:#fff}
+.top-in{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;max-width:1080px;margin:0 auto}
+.brand{font-family:'Noto Serif Bengali',serif;font-weight:700;font-size:1.25rem;color:#fff;text-decoration:none}
+.brand span{color:var(--gold-l)}
+.theme-btn{background:transparent;border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:999px;padding:6px 14px;cursor:pointer;font-family:inherit}
+.hero{background:linear-gradient(135deg,var(--emerald) 0%,var(--emerald-d) 100%);color:#fff;text-align:center;padding:52px 16px 44px}
+.hero h1{font-family:'Noto Serif Bengali',serif;font-size:2rem;margin-bottom:8px}
+.hero h1 span{color:var(--gold-l)}
+.hero p{opacity:.92;max-width:640px;margin:0 auto 22px}
+.search{max-width:520px;margin:0 auto;display:flex;background:#fff;border-radius:999px;overflow:hidden;box-shadow:0 6px 24px rgba(0,0,0,.18)}
+.search input{flex:1;border:0;padding:13px 20px;font-size:1rem;font-family:inherit;outline:none;color:#222}
+.search button{border:0;background:var(--gold);color:#3a2c00;font-weight:700;padding:0 26px;cursor:pointer;font-family:inherit}
+.chips{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:26px 0 6px}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 18px;cursor:pointer;font-family:inherit;font-size:.95rem}
+.chip.on{background:var(--emerald);color:#fff;border-color:var(--emerald)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin:22px 0 40px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:8px;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.badge{align-self:flex-start;background:#eef5ef;color:var(--emerald);font-size:.8rem;font-weight:600;border-radius:999px;padding:3px 12px}
+[data-theme="dark"] .badge{background:#243528}
+.card h3{font-size:1.1rem;line-height:1.5}
+.card .type{font-size:.85rem;color:var(--muted)}
+.card .desc{font-size:.95rem;flex:1}
+.btns{display:flex;gap:10px;margin-top:6px}
+.btn{flex:1;text-align:center;text-decoration:none;border-radius:10px;padding:10px;font-weight:600;font-size:.95rem}
+.btn.tg{background:#229ED9;color:#fff}
+.btn.fb{background:#1877F2;color:#fff}
+.banner{background:linear-gradient(135deg,var(--emerald),var(--emerald-d));border-radius:16px;color:#fff;padding:30px 24px;text-align:center;margin:10px 0 40px}
+.banner h2{font-family:'Noto Serif Bengali',serif;margin-bottom:8px}
+.banner h2 span{color:var(--gold-l)}
+.banner p{opacity:.9;margin-bottom:18px}
+.banner .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.banner .btn{flex:0 1 auto;padding:11px 30px}
+.submit-sec{text-align:center;margin:0 0 46px}
+.submit-sec .btn{display:inline-block;background:var(--gold);color:#3a2c00;padding:13px 38px;border-radius:999px}
+.empty{text-align:center;color:var(--muted);padding:40px 0;display:none}
+footer{border-top:1px solid var(--line);padding:22px 0 34px;text-align:center;color:var(--muted);font-size:.9rem}
+footer a{color:var(--emerald)}
+[data-theme="dark"] footer a{color:var(--gold-l)}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-in">
+  <a class="brand" href="{{ site.baseurl }}/"><span>Our</span> Islamic Archive</a>
+  <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">🌙 রাত</button>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <h1><span>Our</span> Islamic Archive</h1>
+  <p>{{ site.tagline }}</p>
+  <div class="search">
+    <input id="q" type="search" placeholder="রিসোর্স খুঁজুন…" oninput="applyFilter()">
+    <button onclick="applyFilter()">খুঁজুন</button>
+  </div>
+</div></section>
+
+<div class="wrap">
+  <div class="chips" id="chips">
+    <button class="chip on" data-cat="all" onclick="setCat('all',this)">সবগুলো</button>
+    {% assign cats = site.data.resources | map: 'category' | uniq %}
+    {% for c in cats %}
+    <button class="chip" data-cat="{{ c }}" onclick="setCat('{{ c }}',this)">{{ c }}</button>
+    {% endfor %}
+  </div>
+
+  <div class="grid" id="grid">
+    {% for r in site.data.resources %}
+    <div class="card" data-cat="{{ r.category }}" data-text="{{ r.title }} {{ r.title_en }} {{ r.description }} {{ r.type }}">
+      <span class="badge">{{ r.category }}</span>
+      <h3>{{ r.title }}</h3>
+      <p class="type">{{ r.type }}{% if r.title_en %} · {{ r.title_en }}{% endif %}</p>
+      <p class="desc">{{ r.description }}</p>
+      <div class="btns">
+        <a class="btn tg" href="{{ r.telegram_link }}" target="_blank" rel="noopener">📩 Telegram</a>
+        {% if r.fb_link and r.fb_link != "" %}
+        <a class="btn fb" href="{{ r.fb_link }}" target="_blank" rel="noopener">📘 Facebook</a>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <p class="empty" id="empty">কিছু পাওয়া যায়নি — অন্য কিছু লিখে খুঁজুন।</p>
+
+  <section class="banner">
+    <h2>কমিউনিটিতে <span>যুক্ত হোন</span></h2>
+    <p>নতুন রিসোর্স সবার আগে পেতে আমাদের ফেসবুক গ্রুপ ও টেলিগ্রাম চ্যানেলে যোগ দিন।</p>
+    <div class="row">
+      <a class="btn fb" href="https://facebook.com/groups/963422407394224/" target="_blank" rel="noopener">📘 Facebook Group</a>
+      <a class="btn tg" href="https://t.me/islamic_resource_library" target="_blank" rel="noopener">📩 Telegram Channel</a>
+    </div>
+  </section>
+
+  <div class="submit-sec">
+    <a class="btn" href="https://t.me/islamic_resource_library" target="_blank" rel="noopener">➕ রিসোর্স জমা দিন</a>
+    <p style="color:var(--muted);font-size:.9rem;margin-top:10px">টেলিগ্রাম গ্রুপে আপনার রিসোর্স পাঠান — যাচাই করে সাইটে যোগ করা হবে।</p>
+  </div>
+</div>
+
+<footer><div class="wrap">
+  <p><strong>Our Islamic Archive</strong> — ইসলামিক রিসোর্স সংগ্রহশালা</p>
+  <p style="margin-top:6px">Part of the <a href="https://mdtowfiqul.github.io/our-boighar/">Our Boighar</a> family · Made with care in Bangladesh</p>
+</div></footer>
+
+<script>
+let activeCat='all';
+function setCat(c,el){activeCat=c;document.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));el.classList.add('on');applyFilter();}
+function applyFilter(){
+  const q=(document.getElementById('q').value||'').trim();
+  let n=0;
+  document.querySelectorAll('.card').forEach(card=>{
+    const okCat=activeCat==='all'||card.dataset.cat===activeCat;
+    const okQ=!q||card.dataset.text.toLowerCase().includes(q.toLowerCase());
+    const show=okCat&&okQ; card.style.display=show?'':'none'; if(show)n++;
+  });
+  document.getElementById('empty').style.display=n?'none':'block';
+}
+function toggleTheme(){
+  const h=document.documentElement, cur=h.getAttribute('data-theme')==='dark'?'light':'dark';
+  h.setAttribute('data-theme',cur); localStorage.setItem('oia-theme',cur);
+  document.getElementById('themeBtn').textContent=cur==='dark'?'☀️ দিন':'🌙 রাত';
+}
+(function(){const t=localStorage.getItem('oia-theme');if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');document.getElementById('themeBtn').textContent='☀️ দিন';}})();
+</script>
+</body>
+</html>
