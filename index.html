@@ -10,77 +10,149 @@
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --emerald:#0f5132; --emerald-d:#0a3a24; --gold:#d4af37; --gold-l:#f0d878;
-  --bg:#f7f5ef; --card:#ffffff; --ink:#1d2420; --muted:#6b7280; --line:#e7e2d5;
+  --emerald:#0f5132; --emerald-d:#0a3a24; --gold:#d4af37; --gold-l:#f0d878; --gold-hover:#bf9b28;
+  --bg:#f7f5ef; --card:#ffffff; --ink:#1d2420; --muted:#5f656d; --line:#e7e2d5;
 }
 [data-theme="dark"]{
-  --bg:#101511; --card:#1a211c; --ink:#ece9dd; --muted:#9aa39b; --line:#2a332c;
+  --bg:#101511; --card:#1a211c; --ink:#ece9dd; --muted:#a9b1a9; --line:#2a332c;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Hind Siliguri',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
-.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+a,button,input{font-family:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible,.chip:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 header.top{position:sticky;top:0;z-index:50;background:var(--emerald);color:#fff}
-.top-in{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;max-width:1080px;margin:0 auto}
-.brand{font-family:'Noto Serif Bengali',serif;font-weight:700;font-size:1.25rem;color:#fff;text-decoration:none}
+.top-in{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1080px;margin:0 auto}
+.brand{font-family:'Noto Serif Bengali',serif;font-weight:600;font-size:1.25rem;color:#fff;text-decoration:none}
 .brand span{color:var(--gold-l)}
-.theme-btn{background:transparent;border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:999px;padding:6px 14px;cursor:pointer;font-family:inherit}
-.hero{background:linear-gradient(135deg,var(--emerald) 0%,var(--emerald-d) 100%);color:#fff;text-align:center;padding:52px 16px 44px}
-.hero h1{font-family:'Noto Serif Bengali',serif;font-size:2rem;margin-bottom:8px}
-.hero h1 span{color:var(--gold-l)}
-.hero p{opacity:.92;max-width:640px;margin:0 auto 22px}
-.search{max-width:520px;margin:0 auto;display:flex;background:#fff;border-radius:999px;overflow:hidden;box-shadow:0 6px 24px rgba(0,0,0,.18)}
-.search input{flex:1;border:0;padding:13px 20px;font-size:1rem;font-family:inherit;outline:none;color:#222}
-.search button{border:0;background:var(--gold);color:#3a2c00;font-weight:700;padding:0 26px;cursor:pointer;font-family:inherit}
-.chips{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:26px 0 6px}
-.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 18px;cursor:pointer;font-family:inherit;font-size:.95rem}
+.theme-btn{background:transparent;border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:8px;padding:6px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-size:1rem}
+.theme-btn .icon-sun{display:none}
+[data-theme="dark"] .theme-btn .icon-moon{display:none}
+[data-theme="dark"] .theme-btn .icon-sun{display:inline-flex}
+.hero{background:var(--emerald);color:#fff;padding:48px 24px}
+.hero-in{max-width:1080px;margin:0 auto;display:flex;gap:32px;align-items:center}
+.hero-copy{flex:1 1 0;min-width:0}
+.hero h1{font-family:'Noto Serif Bengali',serif;font-size:2rem;font-weight:600;line-height:1.3;margin-bottom:8px}
+.hero-en{font-family:'Noto Serif Bengali',serif;font-size:1.125rem;font-weight:600;color:var(--gold-l);margin-bottom:8px}
+.hero p{opacity:.92;max-width:40rem;margin:0 0 20px}
+.hero-scene{flex:0 0 400px;min-width:0}
+.hero-scene svg{width:100%;height:auto;display:block;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.06)}
+.search{max-width:520px;display:flex;background:var(--card);border-radius:10px;overflow:hidden;box-shadow:0 6px 24px rgba(0,0,0,.18)}
+.search input{flex:1;border:0;padding:12px 20px;font-size:1rem;outline:none;color:var(--ink);background:transparent;min-width:0}
+.search button{border:0;background:var(--gold);color:#3a2c00;font-weight:600;padding:0 24px;cursor:pointer;font-size:1rem}
+.search button:hover{background:var(--gold-hover)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0 8px}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:8px 16px;cursor:pointer;font-size:.95rem;display:inline-flex;align-items:center;gap:8px}
+.chip .mark{display:none;width:12px;height:14px;flex:0 0 auto}
 .chip.on{background:var(--emerald);color:#fff;border-color:var(--emerald)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin:22px 0 40px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:8px;box-shadow:0 2px 10px rgba(0,0,0,.05)}
-.badge{align-self:flex-start;background:#eef5ef;color:var(--emerald);font-size:.8rem;font-weight:600;border-radius:999px;padding:3px 12px}
-[data-theme="dark"] .badge{background:#243528}
-.card h3{font-size:1.1rem;line-height:1.5}
-.card .type{font-size:.85rem;color:var(--muted)}
+.chip.on .mark{display:inline-flex}
+.chip:hover{border-color:var(--emerald);color:var(--emerald)}
+.chip.on:hover{background:var(--emerald-d);border-color:var(--emerald-d);color:#fff}
+[data-theme="dark"] .chip:hover{border-color:var(--gold-l);color:var(--gold-l)}
+[data-theme="dark"] .chip.on:hover{border-color:var(--emerald-d);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;margin:24px 0 40px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:8px;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.card:hover{border-color:#d8d2c2}
+[data-theme="dark"] .card:hover{border-color:#3a463c}
+.badge{align-self:flex-start;background:none;color:var(--muted);font-size:.75rem;font-weight:500;padding:0}
+.card h3{font-size:1.125rem;font-weight:600;line-height:1.5}
+.card .title-en{font-size:.875rem;color:var(--muted)}
+.card .type{font-size:.875rem;color:var(--muted)}
 .card .desc{font-size:.95rem;flex:1}
-.btns{display:flex;gap:10px;margin-top:6px}
-.btn{flex:1;text-align:center;text-decoration:none;border-radius:10px;padding:10px;font-weight:600;font-size:.95rem}
-.btn.tg{background:#229ED9;color:#fff}
-.btn.fb{background:#1877F2;color:#fff}
-.btn.web{background:var(--emerald);color:#fff}
-.banner{background:linear-gradient(135deg,var(--emerald),var(--emerald-d));border-radius:16px;color:#fff;padding:30px 24px;text-align:center;margin:10px 0 40px}
-.banner h2{font-family:'Noto Serif Bengali',serif;margin-bottom:8px}
+.btns{display:flex;gap:8px;margin-top:8px}
+.btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-align:center;text-decoration:none;border-radius:10px;padding:12px 16px;font-weight:600;font-size:.95rem;background:var(--emerald);color:#fff;border:0;cursor:pointer}
+.btn:hover{background:var(--emerald-d)}
+.banner{background:var(--emerald);border-radius:16px;color:#fff;padding:32px 24px;text-align:center;margin:8px 0 40px}
+.banner h2{font-family:'Noto Serif Bengali',serif;font-weight:600;margin-bottom:8px}
 .banner h2 span{color:var(--gold-l)}
-.banner p{opacity:.9;margin-bottom:18px}
+.banner p{opacity:.9;margin-bottom:20px}
 .banner .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.banner .btn{flex:0 1 auto;padding:11px 30px}
-.submit-sec{text-align:center;margin:0 0 46px}
-.submit-sec .btn{display:inline-block;background:var(--gold);color:#3a2c00;padding:13px 38px;border-radius:999px}
+.banner .row+.row{margin-top:12px}
+.banner .btn{flex:0 1 auto;padding:12px 32px;background:transparent;border:1px solid rgba(255,255,255,.45);color:#fff}
+.banner .btn:hover{background:rgba(255,255,255,.12)}
+.submit-sec{text-align:center;margin:0 0 48px}
+.submit-sec .btn{display:inline-flex;background:var(--gold);color:#3a2c00;padding:12px 40px;border-radius:10px}
+.submit-sec .btn:hover{background:var(--gold-hover)}
+.submit-note{color:var(--muted);font-size:.875rem;margin-top:8px}
 .empty{text-align:center;color:var(--muted);padding:40px 0;display:none}
-footer{border-top:1px solid var(--line);padding:22px 0 34px;text-align:center;color:var(--muted);font-size:.9rem}
+footer{border-top:1px solid var(--line);padding:24px 0 32px;text-align:center;color:var(--muted);font-size:.875rem}
+footer p+p{margin-top:8px}
 footer a{color:var(--emerald)}
 [data-theme="dark"] footer a{color:var(--gold-l)}
+[data-theme="dark"] .search{box-shadow:0 6px 24px rgba(0,0,0,.35)}
+.ua-icon{width:18px;height:18px;flex:0 0 auto;display:inline-flex}
+.ua-icon:empty{display:none}
+.ua-icon svg{width:100%;height:100%;display:block}
+.chip,.btn,.theme-btn,.search button{transition:background-color 150ms cubic-bezier(.22,1,.36,1),border-color 150ms cubic-bezier(.22,1,.36,1),color 150ms cubic-bezier(.22,1,.36,1)}
+@media (min-width:800px){
+  .card:first-child{grid-column:span 2}
+}
+@media (max-width:799px){
+  .hero-in{flex-direction:column;align-items:stretch}
+  .hero-scene{flex:0 0 auto;max-width:420px;width:100%;margin:0 auto}
+}
 </style>
 </head>
 <body>
 <header class="top"><div class="top-in">
   <a class="brand" href="{{ site.baseurl }}/"><span>Our</span> Islamic Archive</a>
-  <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">🌙 রাত</button>
+  <button class="theme-btn" id="themeBtn" onclick="toggleTheme()"><span class="ua-icon icon-moon" data-icon="moon" data-tone="light" aria-hidden="true"></span><span class="ua-icon icon-sun" data-icon="sun" data-tone="light" aria-hidden="true"></span><span id="themeLabel">রাত</span></button>
 </div></header>
 
-<section class="hero"><div class="wrap">
-  <h1><span>Our</span> Islamic Archive</h1>
-  <p>{{ site.tagline }}</p>
-  <div class="search">
-    <input id="q" type="search" placeholder="রিসোর্স খুঁজুন…" oninput="applyFilter()">
-    <button onclick="applyFilter()">খুঁজুন</button>
+<section class="hero"><div class="hero-in">
+  <div class="hero-copy">
+    <h1>ইসলামিক রিসোর্স সংগ্রহশালা</h1>
+    <p class="hero-en">Our Islamic Archive</p>
+    <p>{{ site.tagline }}</p>
+    <div class="search">
+      <input id="q" type="search" placeholder="খুঁজুন" oninput="applyFilter()">
+      <button onclick="applyFilter()">খুঁজুন</button>
+    </div>
+  </div>
+  <div class="hero-scene" aria-hidden="true">
+    <svg viewBox="0 0 440 280" role="presentation">
+      <rect x="6" y="6" width="428" height="268" rx="16" fill="#f7f5ef"/>
+      <rect x="36" y="128" width="368" height="8" rx="2" fill="#0a3a24"/>
+      <rect x="36" y="224" width="368" height="8" rx="2" fill="#0a3a24"/>
+      <rect x="48" y="56" width="22" height="72" rx="2" fill="#d4af37"/>
+      <rect x="72" y="40" width="18" height="88" rx="2" fill="#0f5132"/>
+      <rect x="92" y="64" width="24" height="64" rx="2" fill="#fffdf6" stroke="#d8d2c2"/>
+      <rect x="118" y="48" width="20" height="80" rx="2" fill="#f0d878"/>
+      <rect x="140" y="68" width="26" height="60" rx="2" fill="#14603d"/>
+      <rect x="168" y="44" width="20" height="84" rx="2" fill="#d4af37"/>
+      <rect x="190" y="62" width="22" height="66" rx="2" fill="#fffdf6" stroke="#d8d2c2"/>
+      <rect x="214" y="50" width="18" height="78" rx="2" fill="#0f5132"/>
+      <rect x="236" y="52" width="20" height="76" rx="2" fill="#d4af37" transform="rotate(12 246 128)"/>
+      <rect x="268" y="70" width="24" height="58" rx="2" fill="#f0d878"/>
+      <rect x="294" y="46" width="20" height="82" rx="2" fill="#0f5132"/>
+      <rect x="316" y="60" width="22" height="68" rx="2" fill="#fffdf6" stroke="#d8d2c2"/>
+      <rect x="340" y="52" width="20" height="76" rx="2" fill="#d4af37"/>
+      <rect x="362" y="66" width="22" height="62" rx="2" fill="#14603d"/>
+      <rect x="48" y="208" width="120" height="16" rx="2" fill="#d4af37"/>
+      <rect x="52" y="192" width="112" height="16" rx="2" fill="#0f5132"/>
+      <rect x="56" y="176" width="104" height="16" rx="2" fill="#fffdf6" stroke="#d8d2c2"/>
+      <path d="M232 200 Q214 192 196 200 L196 224 Q214 216 232 224 Z" fill="#fffdf6" stroke="#e7e2d5"/>
+      <path d="M232 200 Q250 192 268 200 L268 224 Q250 216 232 224 Z" fill="#fffdf6" stroke="#e7e2d5"/>
+      <line x1="202" y1="208" x2="226" y2="208" stroke="#d8d2c2" stroke-width="2"/>
+      <line x1="202" y1="215" x2="226" y2="215" stroke="#d8d2c2" stroke-width="2"/>
+      <line x1="238" y1="208" x2="262" y2="208" stroke="#d8d2c2" stroke-width="2"/>
+      <line x1="238" y1="215" x2="262" y2="215" stroke="#d8d2c2" stroke-width="2"/>
+      <line x1="232" y1="200" x2="232" y2="224" stroke="#d4af37" stroke-width="2"/>
+      <rect x="292" y="154" width="20" height="70" rx="2" fill="#d4af37"/>
+      <rect x="314" y="140" width="22" height="84" rx="2" fill="#0f5132"/>
+      <rect x="338" y="160" width="18" height="64" rx="2" fill="#fffdf6" stroke="#d8d2c2"/>
+      <rect x="358" y="148" width="24" height="76" rx="2" fill="#f0d878"/>
+      <rect x="384" y="166" width="18" height="58" rx="2" fill="#0f5132"/>
+    </svg>
   </div>
 </div></section>
 
 <div class="wrap">
   <div class="chips" id="chips">
-    <button class="chip on" data-cat="all" onclick="setCat('all',this)">সবগুলো</button>
+    <button class="chip on" data-cat="all" onclick="setCat('all',this)"><svg class="mark" width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><path d="M2 1.5h8V13l-4-3.2L2 13V1.5z" fill="#f0d878"/></svg>সবগুলো</button>
     {% assign cats = site.data.resources | map: 'category' | uniq %}
     {% for c in cats %}
-    <button class="chip" data-cat="{{ c }}" onclick="setCat('{{ c }}',this)">{{ c }}</button>
+    <button class="chip" data-cat="{{ c }}" onclick="setCat('{{ c }}',this)"><svg class="mark" width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><path d="M2 1.5h8V13l-4-3.2L2 13V1.5z" fill="#f0d878"/></svg>{{ c }}</button>
     {% endfor %}
   </div>
 
@@ -89,17 +161,18 @@ footer a{color:var(--emerald)}
     <div class="card" data-cat="{{ r.category }}" data-text="{{ r.title }} {{ r.title_en }} {{ r.description }} {{ r.type }}">
       <span class="badge">{{ r.category }}</span>
       <h3>{{ r.title }}</h3>
-      <p class="type">{{ r.type }}{% if r.title_en %} · {{ r.title_en }}{% endif %}</p>
+      {% if r.title_en %}<p class="title-en">{{ r.title_en }}</p>{% endif %}
+      <p class="type">{{ r.type }}</p>
       <p class="desc">{{ r.description }}</p>
       <div class="btns">
         {% if r.telegram_link and r.telegram_link != "" %}
-        <a class="btn tg" href="{{ r.telegram_link }}" target="_blank" rel="noopener">📩 Telegram</a>
+        <a class="btn" href="{{ r.telegram_link }}" target="_blank" rel="noopener"><span class="ua-icon" data-icon="send" data-tone="light" aria-hidden="true"></span>Telegram</a>
         {% endif %}
         {% if r.fb_link and r.fb_link != "" %}
-        <a class="btn fb" href="{{ r.fb_link }}" target="_blank" rel="noopener">📘 Facebook</a>
+        <a class="btn" href="{{ r.fb_link }}" target="_blank" rel="noopener"><span class="ua-icon" data-icon="facebook" data-tone="light" aria-hidden="true"></span>Facebook</a>
         {% endif %}
         {% if r.web_link and r.web_link != "" %}
-        <a class="btn web" href="{{ r.web_link }}" target="_blank" rel="noopener">🔗 লিংক</a>
+        <a class="btn" href="{{ r.web_link }}" target="_blank" rel="noopener"><span class="ua-icon" data-icon="link" data-tone="light" aria-hidden="true"></span>লিংক</a>
         {% endif %}
       </div>
     </div>
@@ -111,28 +184,30 @@ footer a{color:var(--emerald)}
     <h2>কমিউনিটিতে <span>যুক্ত হোন</span></h2>
     <p>নতুন রিসোর্স সবার আগে পেতে আমাদের ফেসবুক গ্রুপ ও টেলিগ্রাম চ্যানেলে যোগ দিন।</p>
     <div class="row">
-      <a class="btn fb" href="https://facebook.com/groups/963422407394224/" target="_blank" rel="noopener">📘 Facebook Group</a>
-      <a class="btn tg" href="https://t.me/islamic_resource_library" target="_blank" rel="noopener">📩 Telegram Channel</a>
+      <a class="btn" href="https://facebook.com/groups/963422407394224/" target="_blank" rel="noopener"><span class="ua-icon" data-icon="facebook" data-tone="light" aria-hidden="true"></span>Facebook Group</a>
+      <a class="btn" href="https://t.me/islamic_resource_library" target="_blank" rel="noopener"><span class="ua-icon" data-icon="send" data-tone="light" aria-hidden="true"></span>Telegram Channel</a>
     </div>
     <div class="row">
-      <a class="btn fb" href="https://www.facebook.com/FBOurFamily" target="_blank" rel="noopener">📘 Our Family Page</a>
-      <a class="btn tg" href="https://t.me/ourfamilybd" target="_blank" rel="noopener">📩 Our Family Channel</a>
-      <a class="btn tg" href="https://t.me/Our_Family_bd" target="_blank" rel="noopener">💬 Our Family Group</a>
-      <a class="btn tg" href="https://t.me/OurfamilyBDBot" target="_blank" rel="noopener">🤖 Our Family Bot</a>
+      <a class="btn" href="https://www.facebook.com/FBOurFamily" target="_blank" rel="noopener"><span class="ua-icon" data-icon="facebook" data-tone="light" aria-hidden="true"></span>Our Family Page</a>
+      <a class="btn" href="https://t.me/ourfamilybd" target="_blank" rel="noopener"><span class="ua-icon" data-icon="send" data-tone="light" aria-hidden="true"></span>Our Family Channel</a>
+      <a class="btn" href="https://t.me/Our_Family_bd" target="_blank" rel="noopener"><span class="ua-icon" data-icon="message-circle" data-tone="light" aria-hidden="true"></span>Our Family Group</a>
+      <a class="btn" href="https://t.me/OurfamilyBDBot" target="_blank" rel="noopener"><span class="ua-icon" data-icon="send" data-tone="light" aria-hidden="true"></span>Our Family Bot</a>
     </div>
   </section>
 
   <div class="submit-sec">
-    <a class="btn" href="https://t.me/islamic_resource_library" target="_blank" rel="noopener">➕ রিসোর্স জমা দিন</a>
-    <p style="color:var(--muted);font-size:.9rem;margin-top:10px">টেলিগ্রাম গ্রুপে আপনার রিসোর্স পাঠান — যাচাই করে সাইটে যোগ করা হবে।</p>
+    <a class="btn" href="https://t.me/islamic_resource_library" target="_blank" rel="noopener"><span class="ua-icon" data-icon="plus-circle" data-tone="dark" aria-hidden="true"></span>রিসোর্স জমা দিন</a>
+    <p class="submit-note">টেলিগ্রাম গ্রুপে আপনার রিসোর্স পাঠান — যাচাই করে সাইটে যোগ করা হবে।</p>
   </div>
 </div>
 
 <footer><div class="wrap">
   <p><strong>Our Islamic Archive</strong> — ইসলামিক রিসোর্স সংগ্রহশালা</p>
-  <p style="margin-top:6px">Part of the <a href="https://mdtowfiqul.github.io/our-family/">Our Family</a> · <a href="https://mdtowfiqul.github.io/our-boighar/">Our Boighar</a> family · Made with care in Bangladesh</p>
+  <p>Part of the <a href="https://mdtowfiqul.github.io/our-family/">Our Family</a> · <a href="https://mdtowfiqul.github.io/our-boighar/">Our Boighar</a> family · Made with care in Bangladesh</p>
 </div></footer>
 
+<!-- lottie-web 5.12.2 light build (SVG renderer only), vendored so the icons work without a CDN. MIT, github.com/airbnb/lottie-web -->
+<script src="assets/js/lottie_light.min.js"></script>
 <script>
 let activeCat='all';
 function setCat(c,el){activeCat=c;document.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));el.classList.add('on');applyFilter();}
@@ -149,9 +224,48 @@ function applyFilter(){
 function toggleTheme(){
   const h=document.documentElement, cur=h.getAttribute('data-theme')==='dark'?'light':'dark';
   h.setAttribute('data-theme',cur); localStorage.setItem('oia-theme',cur);
-  document.getElementById('themeBtn').textContent=cur==='dark'?'☀️ দিন':'🌙 রাত';
+  document.getElementById('themeLabel').textContent=cur==='dark'?'দিন':'রাত';
+  if(window.__uaPlay){document.querySelectorAll('#themeBtn .ua-icon').forEach(function(el){window.__uaPlay(el);});}
 }
-(function(){const t=localStorage.getItem('oia-theme');if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');document.getElementById('themeBtn').textContent='☀️ দিন';}})();
+(function(){const t=localStorage.getItem('oia-theme');if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');document.getElementById('themeLabel').textContent='দিন';}})();
+/* Animated icons: useAnimations (MIT, useanimations.com), played with lottie-web.
+   Icons are decorative — every button keeps its text label, so if the player
+   or an icon file fails to load, the button still reads fine. */
+(function(){
+  if(!window.lottie) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function recolor(node, rgb){
+    if(!node || typeof node !== 'object') return;
+    if(Array.isArray(node)){ node.forEach(function(c){ recolor(c, rgb); }); return; }
+    Object.keys(node).forEach(function(k){
+      var v = node[k];
+      if(k === 'c' && v && typeof v === 'object'){
+        if(Array.isArray(v.k) && v.k.length === 4 && typeof v.k[0] === 'number'){ v.k = rgb.slice(); }
+        else if(Array.isArray(v.k)){ v.k.forEach(function(fr){ if(fr && Array.isArray(fr.s) && fr.s.length === 4){ fr.s = rgb.slice(); } }); }
+      } else { recolor(v, rgb); }
+    });
+  }
+  var cache = {};
+  function playIcon(el){ if(el && el._ua && !reduce){ el._ua.goToAndPlay(0); } }
+  window.__uaPlay = playIcon;
+  document.querySelectorAll('.ua-icon').forEach(function(el){
+    var id = el.getAttribute('data-icon');
+    var tone = el.getAttribute('data-tone') || 'light';
+    var rgb = tone === 'dark' ? [0.227,0.173,0,1] : [1,1,1,1];
+    var p = cache[id] || (cache[id] = fetch('assets/icons/' + id + '.json').then(function(r){ return r.json(); }));
+    p.then(function(data){
+      var copy = JSON.parse(JSON.stringify(data));
+      recolor(copy, rgb);
+      el._ua = lottie.loadAnimation({container: el, renderer: 'svg', loop: false, autoplay: false, animationData: copy});
+    }).catch(function(){});
+    var host = el.closest('a, button');
+    if(host){
+      host.addEventListener('mouseenter', function(){ playIcon(el); });
+      host.addEventListener('focus', function(){ playIcon(el); });
+      host.addEventListener('click', function(){ playIcon(el); });
+    }
+  });
+})();
 </script>
 </body>
 </html>
